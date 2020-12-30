@@ -1,4 +1,4 @@
-# QCKPrism
+# QCK Prism
 Working out the protocol for the SteelSeries QCK Prism Mousemat.
 
 **Please use [OpenRGB](https://gitlab.com/CalcProgrammer1/OpenRGB) instead of any code here.** This repo exists to document the protocol so it can be PR'd to OpenRGB.
@@ -6,6 +6,23 @@ Working out the protocol for the SteelSeries QCK Prism Mousemat.
 Protocol seems to be pretty similar with existing steelseries products, but with a different set of commands.
 
 Everything was figured out from Wireshark captures.
+
+
+## Communication
+
+Working with the "SteelSeries QcK Prism - Cloth Gaming Mousemat - XL", different revisions might have a different protocol or vendor ID. Controller is probably pretty static between sizes though, just a little USB device connected to a diffusion tube.
+
+* Vendor ID: 1038
+* Product ID: 150d
+* Device Name: SteelSeries ApS SteelSeries QCK Prism Cloth
+
+```
+SET_REPORT
+wValue 0x0300
+wIndex: 0
+bmRequest: 9
+bmRequestType 0x21
+```
 
 ## Known Commands
 
