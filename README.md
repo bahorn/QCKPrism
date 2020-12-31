@@ -7,7 +7,6 @@ Protocol seems to be pretty similar with existing steelseries products, but with
 
 Everything was figured out from Wireshark captures.
 
-
 ## Communication
 
 Working with the "SteelSeries QcK Prism - Cloth Gaming Mousemat - XL", different revisions might have a different protocol or vendor ID. Controller is probably pretty static between sizes though, just a little USB device connected to a diffusion tube.
