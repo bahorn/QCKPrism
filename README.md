@@ -57,8 +57,8 @@ Packet looks roughly like this:
 
 ```
 CMD   00 COUNT 00
-COLOR FF 32 c8 00 00 00 01 00 00
-COLOR FF 32 c8 00 00 01 01 00 01
+COLOR FF 32 c8 00 00 00 CYCLE 00 ZONE
+COLOR FF 32 c8 00 00 01 CYCLE 00 ZONE
 ```
 
 So each led is set with 12 bytes in the packet.
@@ -66,6 +66,10 @@ So each led is set with 12 bytes in the packet.
 * Color is 3 bytes, representing RGB values.
 * Count is set two for my device, which has 2 zones, hense the count. Probably a transmitted as little endian 16bit int.
 * Unsure of the rest, probably flags of some sort?
+* Cycle is the needs to be set to 01 if this byte is to change to the specified
+  color and not just cycle through them.
+* Zone is the LED to control
+* Think the FF right after a color is just padding.
 
 It seems you can use the flags to control what colors get merged?
 
