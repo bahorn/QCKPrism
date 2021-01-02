@@ -80,10 +80,7 @@ class QCKPrism:
 
 try:
     prism = QCKPrism()
-    prism.reset()
-    prism.unknown()
-    prism.mode()
-    prism.color((0xff, 0x00, 0xff), (0x00, 0xff, 0xff))
+    prism.color((0x00, 0x00, 0xff), (0xff, 0x00, 0x00))
     prism.brightness(1.0)
     prism.reset()
 

@@ -67,5 +67,6 @@ So each led is set with 12 bytes in the packet.
 * Count is set two for my device, which has 2 zones, hense the count. Probably a transmitted as little endian 16bit int.
 * Unsure of the rest, probably flags of some sort?
 
+It seems you can use the flags to control what colors get merged?
 
 ### 0x10 - Unknown
