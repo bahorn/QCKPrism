@@ -27,7 +27,7 @@ bmRequestType 0x21
 
 * 0x0b - Effects.  64 or 524 bytes
 * 0x0c - Brightness. 64 Bytes
-* 0x0d - Unsure, potentially for saving settings? 64 byte packets but empty beyond null bytes.
+* 0x0d - Reset? 64 byte packets but empty beyond null bytes.
 * 0x0e - Setting Color. 524 bytes
 * 0x10 - No idea, got sent when openning the app. Doesn't seem to repsond with anything but the usual status.
 
@@ -47,11 +47,9 @@ When turning an effect off, the app sent a 524 byte packet with just null bytes.
 
 Brightness is sent as a byte. In the GUI there are 4 options for brightness `00, 55, aa, ff`.
 
-### 0x0d - Unknown
+### 0x0d - Reset
 
-Sent after and before most commands, unsure of reason.
-
-Believe it's a way of saving settings?
+Sent after and before most commands, believe its the reset command.
 
 ### 0x0e - Setting Color
 
