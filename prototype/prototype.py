@@ -1,5 +1,6 @@
 import hid
 import struct
+import time
 from enum import Enum
 
 VENDOR_ID = 0x1038
@@ -53,8 +54,10 @@ class QCKPrism:
 
     def mode(self):
         cmd = QCKPrismCMDs.EFFECTS.value
-        msg = pad(struct.pack('hh', cmd, 0x00), 524)
-        self._send(msg)
+        msg = struct.pack('hh', cmd, 0x01)
+        self._report(msg)
+        msg = struct.pack('hh', cmd, 0x00)
+        self._report(msg)
 
     def color(self, zone1, zone2):
         cmd = QCKPrismCMDs.COLOR.value
@@ -62,22 +65,27 @@ class QCKPrism:
         c1 = struct.pack('BBB', zone1[0], zone1[1], zone1[2])
         c1 += b'\xff\x32\xc8\x00\x00\x00\x01\x00\x00'
         c2 = struct.pack('BBB', zone2[0], zone2[1], zone2[2])
-        c2 += b'\xff\x32\xc8\x00\x00\x01\x01\x00\x00'
-        msg = header + c1 + c2
-        self._send(msg)
+        c2 += b'\xff\x32\xc8\x00\x00\x00\x01\x00\x01'
+        msg = pad(header + c1 + c2, 524)
+        print(msg)
+        self._report(msg)
 
     def _send(self, msg):
-        self.dev.write(msg)
+        self.dev.write(pad(msg, 64))
+        time.sleep(0.1)
+
+    def _report(self, msg):
+        self.dev.send_feature_report(pad(msg, 524))
+        time.sleep(0.1)
 
 try:
     prism = QCKPrism()
     prism.reset()
     prism.unknown()
-    prism.reset()
     prism.mode()
-    prism.color((0xff, 0x00, 0xff), (0xff, 0x00, 0xff))
+    prism.color((0xff, 0x00, 0xff), (0x00, 0xff, 0xff))
     prism.brightness(1.0)
-    #prism.reset()
+    prism.reset()
 
 except IOError as ex:
     print(ex)
