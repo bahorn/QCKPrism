@@ -70,6 +70,17 @@ class QCKPrism:
         print(msg)
         self._report(msg)
 
+    def single_color(self, zone_id, color):
+        cmd = QCKPrismCMDs.COLOR.value
+        header = struct.pack('hh', cmd, 1)
+        c1 = struct.pack('BBB', color[0], color[1], color[2])
+        c1 += b'\xff\x32\xc8\x01\x00\x00\x01\x00'
+        c1 += struct.pack('B', zone_id)
+        msg = pad(header + c1, 524)
+        print(msg)
+        self._report(msg)
+
+
     def _send(self, msg):
         self.dev.write(pad(msg, 64))
         time.sleep(0.1)
@@ -80,7 +91,7 @@ class QCKPrism:
 
 try:
     prism = QCKPrism()
-    prism.color((0xff, 0xff, 0xff), (0xff, 0xff, 0xff))
+    prism.single_color(1, (0x00, 0xff, 0xff))
     prism.brightness(1.0)
     prism.reset()
 

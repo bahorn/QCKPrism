@@ -67,7 +67,7 @@ COLOR FF 32 c8 00 00 01 CYCLE 00 ZONE
 So each led is set with 12 bytes in the packet.
 
 * Color is 3 bytes, representing RGB values.
-* Count is set two for my device, which has 2 zones, hense the count. Probably a transmitted as little endian 16bit int.
+* Count is the number of leds being set in this message in this message.
 * Unsure of the rest, probably flags of some sort?
 * Cycle is the needs to be set to 01 if this byte is to change to the specified
   color and not just cycle through them.
