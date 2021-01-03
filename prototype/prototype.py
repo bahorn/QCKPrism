@@ -63,9 +63,9 @@ class QCKPrism:
         cmd = QCKPrismCMDs.COLOR.value
         header = struct.pack('hh', cmd, 2)
         c1 = struct.pack('BBB', zone1[0], zone1[1], zone1[2])
-        c1 += b'\xff\x32\xc8\x00\x00\x00\x01\x00\x00'
+        c1 += b'\xff\x32\xc8\x01\x00\x00\x01\x00\x00'
         c2 = struct.pack('BBB', zone2[0], zone2[1], zone2[2])
-        c2 += b'\xff\x32\xc8\x00\x00\x00\x01\x00\x01'
+        c2 += b'\xff\x32\xc8\x00\x00\x01\x01\x00\x01'
         msg = pad(header + c1 + c2, 524)
         print(msg)
         self._report(msg)
@@ -80,7 +80,7 @@ class QCKPrism:
 
 try:
     prism = QCKPrism()
-    prism.color((0x00, 0x00, 0xff), (0xff, 0x00, 0x00))
+    prism.color((0xff, 0xff, 0xff), (0xff, 0xff, 0xff))
     prism.brightness(1.0)
     prism.reset()
 

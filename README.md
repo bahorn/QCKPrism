@@ -3,6 +3,9 @@ Working out the protocol for the SteelSeries QCK Prism Mousemat.
 
 **Please use [OpenRGB](https://gitlab.com/CalcProgrammer1/OpenRGB) instead of any code here.** This repo exists to document the protocol so it can be PR'd to OpenRGB.
 
+My dev branch for this in OpenRGB is
+[here.](https://gitlab.com/bahorn/OpenRGB/-/tree/feature/qck-prism)
+
 Protocol seems to be pretty similar with existing steelseries products, but with a different set of commands.
 
 Everything was figured out from Wireshark captures.
